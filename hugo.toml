@@ -1,0 +1,56 @@
+baseURL = "https://YunfeiSHU.github.io/"
+languageCode = "zh-cn"
+title = "YunfeiSHU's Blog"
+theme = "github-style"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true
+
+[params]
+  author = "YunfeiSHU"
+  description = "记录技术学习与生活思考的地方"
+  github = "YunfeiSHU"
+  email = "yunfeishu2005@gmail.com"
+  url = "https://YunfeiSHU.github.io"
+  keywords = "技术博客, 编程, 学习笔记, YunfeiSHU"
+  rss = true
+  lastmod = true
+  favicon = "/images/github.png"
+  avatar = "/images/avatar.png"
+  headerIcon = "/images/github.png"
+  location = "China"
+  enableGitalk = false  # 暂时关闭，需要时再开启并配置OAuth
+  enableSearch = false  # 你设置的是false，如需搜索改为true
+  custom_css = ["css/custom.css"]
+  custom_js = ["js/custom.js"]
+
+  # 如果需要开启评论功能，取消注释并填写真实信息
+  # [params.gitalk]
+  #   clientID = "你的GitHub OAuth App Client ID"
+  #   clientSecret = "你的GitHub OAuth App Client Secret"
+  #   repo = "blog-comments"  # 建议创建专门的评论仓库
+  #   owner = "YunfeiSHU"
+  #   admin = "YunfeiSHU"
+  #   id = "location.pathname"
+  #   labels = "gitalk"
+  #   perPage = 15
+  #   pagerDirection = "last"
+  #   createIssueManually = true
+  #   distractionFreeMode = false
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+
+# 搜索功能配置（enableSearch为true时需要）
+# [outputs]
+#   home = ["html", "json"]
+
+# [outputFormats.json]
+#   mediaType = "application/json"
+#   baseName = "index"
+#   isPlainText = false
+
+# 如果需要Google Analytics，取消注释并填写ID
+# [services]
+#   [services.googleAnalytics]
+#     ID = "G-XXXXXXXXXX"
