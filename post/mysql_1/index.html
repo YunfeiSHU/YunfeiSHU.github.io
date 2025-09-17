@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://YunfeiSHU.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://YunfeiSHU.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://YunfeiSHU.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://YunfeiSHU.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://YunfeiSHU.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://YunfeiSHU.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://YunfeiSHU.github.io/css/syntax.css' />
+    <title>MySQL_1 - YunfeiSHU&#39;s Blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    <link rel="stylesheet" href="https://YunfeiSHU.github.io/css/custom.css">
+    <script type="text/javascript" src="https://YunfeiSHU.github.io/js/custom.js"></script>
+
+    
+    <meta name="description"
+  content="力扣最近做的MySQL题" />
+<meta name="keywords"
+  content='技术博客, 编程, 学习笔记, YunfeiSHU' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://YunfeiSHU.github.io/post/mysql_1/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="MySQL_1 - YunfeiSHU&#39;s Blog" />
+<meta name="twitter:description"
+  content="力扣最近做的MySQL题" />
+<meta name="twitter:site" content="https://YunfeiSHU.github.io/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://YunfeiSHU.github.io/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="MySQL_1 - YunfeiSHU&#39;s Blog">
+<meta property="og:description"
+  content="力扣最近做的MySQL题" />
+<meta property="og:url" content="https://YunfeiSHU.github.io/post/mysql_1/" />
+<meta property="og:site_name" content="MySQL_1" />
+<meta property="og:image"
+  content="https://YunfeiSHU.github.io/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-09-17 22:04:47 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://YunfeiSHU.github.io/">
+        <img class="octicon" height="32" width="32" src="/images/github.png">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://YunfeiSHU.github.io/">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://YunfeiSHU.github.io/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github.png">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://YunfeiSHU.github.io/">
+                  <img class=" avatar-user"
+                    src="/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://YunfeiSHU.github.io/">YunfeiSHU</a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://YunfeiSHU.github.io/post/mysql_1/">MySQL_1</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Wed, 17 Sep 2025 22:04:47 &#43;0800"
+                    class="no-wrap">
+                    Wed, 17 Sep 2025 22:04:47 &#43;0800</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Wed, 17 Sep 2025 22:06:11 &#43;0800"
+                    class="no-wrap">
+                    Wed, 17 Sep 2025 22:06:11 &#43;0800</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      1151 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/mysql">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      mysql
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><h1 id="mysql手撕思路题1">MySQL手撕/思路题(1)</h1>
+<blockquote>
+<p>分为：（1）SQL查询手写题（2）大数据量等场景题</p>
+<p>手写题：</p>
+<ul>
+<li>
+<p>核心考点：自连接/表连接<code>join on</code>，分组去重 <code>group by+having </code></p>
+</li>
+<li>
+<p>解题思路： 查询语句的执行顺序：</p>
+<p>表连接 &mdash;&gt; where 过滤非指定记录 &mdash;&gt;group by + having 分组去重 &mdash;&ndash;&gt; select 选择返回列 &mdash;&ndash;&gt; distinct 去重&mdash;&mdash;&gt;order by 排序 &mdash;&ndash;&gt; limit 限制行数</p>
+<table>
+  <thead>
+      <tr>
+          <th>①</th>
+          <th>FROM</th>
+          <th>确定主表，准备数据</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>②</td>
+          <td>ON</td>
+          <td>连接多个表的条件</td>
+      </tr>
+      <tr>
+          <td>③</td>
+          <td>JOIN</td>
+          <td>执行 INNER JOIN / LEFT JOIN 等</td>
+      </tr>
+      <tr>
+          <td>④</td>
+          <td>WHERE</td>
+          <td>过滤行数据（提高效率）</td>
+      </tr>
+      <tr>
+          <td>⑤</td>
+          <td>GROUP BY</td>
+          <td>进行分组</td>
+      </tr>
+      <tr>
+          <td>⑥</td>
+          <td>HAVING</td>
+          <td>过滤聚合后的数据</td>
+      </tr>
+      <tr>
+          <td>⑦</td>
+          <td>SELECT</td>
+          <td>选择最终返回的列</td>
+      </tr>
+      <tr>
+          <td>⑧</td>
+          <td>DISTINCT</td>
+          <td>进行去重</td>
+      </tr>
+      <tr>
+          <td>⑨</td>
+          <td>ORDER BY</td>
+          <td>对最终结果排序</td>
+      </tr>
+      <tr>
+          <td>⑩</td>
+          <td>LIMIT</td>
+          <td>限制返回行数</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+</ul></blockquote>
+<ol>
+<li>
+<p><a href="https://leetcode.cn/problems/combine-two-tables/">组合两个表</a></p>
+<p><img src="C:/Users/79042/AppData/Roaming/Typora/typora-user-images/image-20250914104753264.png" alt="image-20250914104753264"></p>
+<ul>
+<li>
+<p>表连接的： <code>left join</code> 左外连接</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MySQL" data-lang="MySQL"><span style="display:flex;"><span><span style="color:#66d9ef">Select</span> FirstName,LastName,City,State <span style="color:#66d9ef">From</span> Person <span style="color:#66d9ef">Left</span> <span style="color:#66d9ef">Join</span> Address <span style="color:#66d9ef">On</span> Person.personId  <span style="color:#f92672">=</span> Address.personId ;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><a href="https://leetcode.cn/problems/employees-earning-more-than-their-managers/">超过经理收入的员工</a></p>
+<p><img src="C:/Users/79042/AppData/Roaming/Typora/typora-user-images/image-20250914105015480.png" alt="image-20250914105015480"></p>
+<p><img src="C:/Users/79042/AppData/Roaming/Typora/typora-user-images/image-20250914105033610.png" alt="image-20250914105033610"></p>
+<ul>
+<li>
+<p>我们需要<strong>将单张表，根据：<code>mannagerId</code>分为两张表</strong>；通<strong>过 <code>e1.managerid=e2.id</code>，得到 e1员工表符合条件的员工名称</strong></p>
+</li>
+<li>
+<p>方法1：子查询（速度慢）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MySQL" data-lang="MySQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> name Employee <span style="color:#66d9ef">from</span> Employee e1
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>  salary <span style="color:#f92672">&gt;</span> (<span style="color:#66d9ef">select</span> salary <span style="color:#66d9ef">from</span> Employee e2 <span style="color:#66d9ef">where</span> e1.managerId <span style="color:#f92672">=</span> e2.id)
+</span></span></code></pre></div><ul>
+<li><strong>主查询</strong>：
+<ul>
+<li><code>FROM Employee e1</code>：从 <code>Employee</code> 表中查询，并用别名 <code>e1</code> 代表 “员工”</li>
+<li><code>SELECT name Employee</code>：最终返回这些员工的姓名，列名为 <code>Employee</code></li>
+</ul>
+</li>
+<li><strong>子查询</strong>：
+<ul>
+<li><code>SELECT salary FROM Employee e2 WHERE e1.managerId = e2.id</code>
+<ul>
+<li>用别名 <code>e2</code> 代表 “经理”</li>
+<li>条件 <code>e1.managerId = e2.id</code> 表示：找到 <code>e1</code>（员工）的直接上级，即 <code>managerId</code> 等于 <code>e2.id</code> 的人（经理）</li>
+<li>子查询的结果是 <strong>该员工对应经理的薪资</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>方法2：自连接表：自内连接，条件 <code>e1.managerid=e2.id</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MySQL" data-lang="MySQL"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> e1.name Employee  <span style="color:#75715e">-- 最终返回“员工”的姓名，列名显示为 Employee
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">FROM</span> Employee e1         <span style="color:#75715e">-- 第一个虚拟表：e1 = 员工表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">JOIN</span> Employee e2         <span style="color:#75715e">-- 内连接第二个虚拟表：e2 = 经理表（JOIN 默认是 INNER JOIN）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">ON</span> e1.managerid <span style="color:#f92672">=</span> e2.id  <span style="color:#75715e">-- 连接条件：员工的“上级ID” = 经理的“员工ID”（找到每个员工对应的经理）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">WHERE</span> e1.salary <span style="color:#f92672">&gt;</span> e2.salary  <span style="color:#75715e">-- 过滤条件：员工薪资 &gt; 其经理薪资
+</span></span></span></code></pre></div></li>
+<li>
+<p>方法3：Where语句</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MySQL" data-lang="MySQL"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>    a.Name <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">&#39;Employee&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span>
+</span></span><span style="display:flex;"><span>    Employee <span style="color:#66d9ef">AS</span> a,
+</span></span><span style="display:flex;"><span>    Employee <span style="color:#66d9ef">AS</span> b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span>
+</span></span><span style="display:flex;"><span>    a.ManagerId <span style="color:#f92672">=</span> b.Id
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">AND</span> a.Salary <span style="color:#f92672">&gt;</span> b.Salary
+</span></span><span style="display:flex;"><span>;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><a href="https://leetcode.cn/problems/duplicate-emails/">查找重复的电子邮箱</a></p>
+<p><img src="./assets/image-20250916151222336.png" alt="image-20250916151222336"></p>
+<ul>
+<li>
+<p>自连接：</p>
+<blockquote>
+<p>注意，表连接是将：两张表和为一张表（e1.id != e2.id 去除自身重复，但仍有对称重复的），需要 DISTINCT 去重</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#75715e"># 内连接实现自连接： 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">DISTINCT</span>  e1.email <span style="color:#66d9ef">from</span> Person e1 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">join</span> Person e2 <span style="color:#66d9ef">on</span> e1.email <span style="color:#f92672">=</span> e2.email
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> e1.id <span style="color:#f92672">!=</span> e2.id
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># from两张自身表，实现连接：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">distinct</span> a.email 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> Person a,Person b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> a.email <span style="color:#f92672">=</span> b.email <span style="color:#66d9ef">and</span> a.id <span style="color:#f92672">!=</span> b.id
+</span></span></code></pre></div></li>
+<li>
+<p><strong>分组去重<code>group by + having</code>：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> email 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> Person <span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> email <span style="color:#66d9ef">having</span> <span style="color:#a6e22e">count</span>(email)<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><a href="https://leetcode.cn/problems/customers-who-never-order/">从不订购的客户</a></p>
+<p><img src="./assets/image-20250916152137258.png" alt="image-20250916152137258"></p>
+<ul>
+<li>
+<p>表连接：左外连接，没有购买的用户的<code>Orders.id</code> is null</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> name Customers 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> Customers <span style="color:#66d9ef">left</span> <span style="color:#66d9ef">join</span> Orders <span style="color:#66d9ef">on</span> Customers.id <span style="color:#f92672">=</span> Orders.customerId
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> Orders.id <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">Null</span>;
+</span></span></code></pre></div></li>
+<li>
+<p>排除 <code>not in</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-MySQL" data-lang="MySQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> customers
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> customers.id <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">select</span> customerid <span style="color:#66d9ef">from</span> orders
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><a href="https://leetcode.cn/problems/delete-duplicate-emails/">删除重复的电子邮箱</a></p>
+<ul>
+<li>
+<p>删除重复的记录，但保留：重复的最小id的记录，而不是删除所有记录</p>
+<ul>
+<li>采用 group by + having 会删除所有重复的记录，只留下不重复的记录</li>
+<li>采用 表连接，选择删除 id 更大的重复记录，就会保留 重复id最小的记录</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">DELETE</span> p1 <span style="color:#66d9ef">FROM</span> Person p1, Person p2
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> p1.email <span style="color:#f92672">=</span> p2.email <span style="color:#66d9ef">AND</span> p1.id <span style="color:#f92672">&gt;</span> p2.id;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><a href="https://leetcode.cn/problems/rising-temperature/">上升的温度</a></p>
+<p><img src="./assets/image-20250917144936096.png" alt="image-20250917144936096"></p>
+<ul>
+<li>
+<p>表自连接：</p>
+<ul>
+<li><code>DATE_ADD(&lt;DATE&gt;，INTERVAL 1 DAY)</code> 表示昨天</li>
+<li><code>datediff(w2.recordDate, w1.recordDate) = 1</code> ：w1为昨天</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#75715e"># 隐式自连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> a.id  <span style="color:#66d9ef">from</span> Weather a,Weather b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> a.recordDate<span style="color:#f92672">=</span><span style="color:#a6e22e">DATE_ADD</span>(b.recordDate,<span style="color:#66d9ef">INTERVAL</span> <span style="color:#ae81ff">1</span> DAY) <span style="color:#66d9ef">and</span> a.temperature <span style="color:#f92672">&gt;</span> b.temperature  
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 显式自连接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> a.id <span style="color:#66d9ef">from</span> Weather a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">join</span> Weather b 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> a.recordDate <span style="color:#f92672">=</span> <span style="color:#a6e22e">DATE_ADD</span>(b.recordDate,<span style="color:#66d9ef">INTERVAL</span> <span style="color:#ae81ff">1</span> DAY) 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> a.temperature <span style="color:#f92672">&gt;</span> b.temperature;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><a href="https://leetcode.cn/problems/game-play-analysis-i/">游戏玩法分析 I</a></p>
+<p><img src="./assets/image-20250917151855435.png" alt="image-20250917151855435"></p>
+<ul>
+<li>
+<p>分组 + <code>min(event_date)</code> 选择最早登录日期返回，而非默认返回</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.player_id player_id,<span style="color:#a6e22e">min</span>(a.event_date) first_login
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> Activity a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> player_id 
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://YunfeiSHU.github.io/js/toc.js'></script>
+<link rel="stylesheet" href='https://YunfeiSHU.github.io/css/toc.css' />
+
+  
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://YunfeiSHU.github.io/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+      <li class="mr-3 mr-lg-0">GitHub and the Invertocat logo are trademarks of <a href="https://github.com/">GitHub, Inc.</a></li>
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+
+</body>
+
+<script type="application/javascript" src="https://YunfeiSHU.github.io/js/github-style.js"></script>
+
+
+
+
+
+
+
+</html>
