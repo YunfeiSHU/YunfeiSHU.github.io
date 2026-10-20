@@ -45,7 +45,7 @@ pnpm preview
 
 ### 英文搜索（UI 实测）
 
-- 输入 `markdown`：面板显示“共 4 条结果”，结果包含 4 篇文章。
+- 输入 `markdown`：面板显示“共 5 条结果”；其中 Expressive Code 因标签 Markdown 也命中。
 - 输入 `zzzznotfound`：显示“共 0 条结果”和空态提示。
 - 点击“清空”：输入与结果清空，面板关闭。
 
@@ -77,6 +77,13 @@ pnpm preview
 | 点击“清空筛选” | URL 回到 `/archive/`，6 篇 |
 | 标签/分类计数 | 标签与分类旁显示数量 |
 | 无结果 | 空态 + 清空按钮 |
+
+### 线上部署实测（2026-10-20）
+
+- GitHub Actions `Deploy to GitHub Pages` run `39402145957` 成功（build 41s、deploy 10s）。
+- 线上 `https://YunfeiSHU.github.io/` 的搜索框输入 `markdown`：显示“共 5 条结果”。
+- 线上 `/archive/?tag=Markdown`：显示“共 3 篇文章”，链接为三篇 Markdown 相关文章。
+- 线上未知路径返回自定义 404。
 
 ## 未完成/未验证
 
