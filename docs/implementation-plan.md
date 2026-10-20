@@ -1073,3 +1073,16 @@ pnpm dev --host 127.0.0.1 --port 4323
 - 新增 `README.md`、`docs/architecture.md`、`configuration.md`、`testing.md`、`deployment.md`。
 - 最终实测：`pnpm check` 0、`pnpm type-check` 0、`biome ci` 0、`pnpm build` 成功（10 HTML、Pagefind 6 页/720 词/zh-cn）、`pnpm verify` 42/42、404 正常、canonical/OG 正常、主题切换正常、四档视口无横向溢出。
 - **部署状态**：已于 2026-10-20 通过 GitHub Actions run `39401637522` 部署成功；`https://YunfeiSHU.github.io/`、Projects、About、Archive、RSS、sitemap、Pagefind JS、OG 图片均返回 200；未知路径返回自定义 404。旧 `doc` 与 `hugo-main-backup` 分支保留。
+
+---
+
+## 19. 内容替换记录（2026-10-20）
+
+- 删除 Fuwari 示例文章：`draft.md`、`expressive-code.md`、`markdown.md`、`markdown-extended.md`、`video.md`、`guide/`。
+- 新增教程文章：`src/content/posts/how-to-write-and-publish.md`
+  - URL：`/posts/how-to-write-and-publish/`
+  - 内容：新建 Markdown、frontmatter、Markdown/提示框/公式/图片、标签分类、本地检查、git/GitHub 网页发布、Actions 部署、常见问题、发布清单。
+- 站点内容现在只有这篇教程（外加 About/Projects/Archive 等页面），不再显示模板示例文章。
+- 最终本地验证：6 个 HTML；Pagefind 2 页/477 词/`zh-cn`；`pnpm verify` 34/34；`pnpm check`/`type-check`/`biome ci`/`build` 均通过。
+- 最终线上验证：GitHub Actions run `39404260498` 成功；线上搜索 `frontmatter` = 1 条（教程）；`/archive/?tag=Markdown` = 1 篇（教程）；首页只显示教程。
+- Giscus 仍因缺少真实 repo/category/ID 未启用，评论验证仍未完成。

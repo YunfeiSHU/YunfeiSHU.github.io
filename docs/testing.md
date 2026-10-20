@@ -80,15 +80,15 @@ pnpm preview
 
 ### 线上部署实测（2026-10-20）
 
-- GitHub Actions `Deploy to GitHub Pages` run `39402145957` 成功（build 41s、deploy 10s）。
-- 线上 `https://YunfeiSHU.github.io/` 的搜索框输入 `markdown`：显示“共 1 条结果”。
+- GitHub Actions `Deploy to GitHub Pages` run `39404260498` 成功（build 38s、deploy 17s）。
+- 线上 `https://YunfeiSHU.github.io/` 的搜索框输入 `frontmatter`：显示“共 1 条结果”（教程文章）。
 - 线上 `/archive/?tag=Markdown`：显示“共 1 篇文章”（教程）。
 - 线上未知路径返回自定义 404。
 
 ## 未完成/未验证
 
 - **Giscus 真实评论**：没有 repo/category/ID 和真实仓库 Discussions，未进行线上评论验证；组件默认关闭，仅完成代码与配置说明。
-- **真实部署**：已于 2026-10-20 通过 GitHub Actions run `39401637522` 部署；线上首页、Projects、About、Archive、RSS、sitemap、Pagefind JS、OG 图片均返回 200，未知路径返回自定义 404。旧 `doc` 与 `hugo-main-backup` 分支保留。
+- **真实部署**：已于 2026-10-20 通过 GitHub Actions run `39404260498` 部署；线上首页、教程、Projects、About、Archive、RSS、sitemap、Pagefind JS、OG 图片均返回 200，未知路径返回自定义 404。旧 `doc` 与 `hugo-main-backup` 分支保留。
 - **真实文章内容**：已将 Fuwari 示例文章替换为一篇真实教程《如何用本项目写文章并发布到网站》；如需更多技术文章，继续按该流程添加。
 - **完整 About 经历**：用户未提供，保持最小真实资料。
 - **Safari/Firefox**：未测试；已用 Chromium 内核检查。

@@ -17,6 +17,7 @@
 - Pages `build_type` 从 `legacy` 改为 `workflow`；
 - Actions `Deploy to GitHub Pages` run `39401637522`：build 46s、deploy 11s，成功；
 - 文档提交后的再次部署 run `39402145957`：build 41s、deploy 10s，成功；
+- 教程替换后的部署 run `39404260498`：build 38s、deploy 17s，成功；线上只显示教程文章；
 - 线上 `https://YunfeiSHU.github.io/`、`/projects/`、`/about/`、`/archive/`、`/404.html`、`/rss.xml`、`/sitemap-index.xml`、`/pagefind/pagefind.js`、`/og-default.png` 均返回 200；
 - 未知路径返回 404，内容为自定义“页面不存在”。
 
