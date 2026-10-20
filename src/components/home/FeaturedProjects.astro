@@ -1,0 +1,23 @@
+---
+import { Icon } from "astro-icon/components";
+import { featuredProjects } from "../../data/projects";
+import { url } from "../../utils/url-utils";
+import ProjectCard from "../ProjectCard.astro";
+---
+
+{featuredProjects.length > 0 && (
+    <section class="mb-4" aria-label="精选项目">
+        <div class="mb-3 flex items-center justify-between gap-4 px-4 lg:px-0">
+            <h2 class="text-xl font-bold text-90">精选项目</h2>
+            <a href={url("/projects/")} class="link text-sm font-bold text-[var(--primary)]">
+                全部项目
+                <Icon name="material-symbols:chevron-right-rounded" class="inline text-[1.1rem]"></Icon>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {featuredProjects.map((project) => (
+                <ProjectCard project={project} compact={true}></ProjectCard>
+            ))}
+        </div>
+    </section>
+)}

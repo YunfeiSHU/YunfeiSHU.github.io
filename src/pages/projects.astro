@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects } from "../data/projects";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+---
+
+<MainGridLayout title="项目" description="YunfeiSHU 最近更新的后端与 AI 应用项目">
+    <div class="card-base mb-4 p-6 md:p-8">
+        <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+                <div class="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">Projects</div>
+                <h1 class="mt-1 text-3xl font-bold text-90">项目</h1>
+                <p class="mt-3 max-w-2xl text-sm leading-relaxed text-75">
+                    按最近更新时间展示的两个自有项目。每张卡片只使用仓库 README 中明确写出的技术栈、功能与设计取舍。
+                </p>
+            </div>
+            <a
+                href="https://github.com/YunfeiSHU?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-regular h-10 shrink-0 rounded-lg px-4 text-sm font-bold active:scale-95"
+            >
+                GitHub 全部仓库
+                <Icon name="fa6-solid:arrow-up-right-from-square" class="ml-2 text-[0.75rem]"></Icon>
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        {projects.map((project) => (
+            <ProjectCard project={project}></ProjectCard>
+        ))}
+    </div>
+</MainGridLayout>

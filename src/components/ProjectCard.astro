@@ -1,0 +1,89 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Project } from "../data/projects";
+
+interface Props {
+	project: Project;
+	compact?: boolean;
+}
+
+const { project, compact = false } = Astro.props;
+const visibleStack = compact ? project.stack.slice(0, 6) : project.stack;
+const hiddenStackCount = project.stack.length - visibleStack.length;
+---
+
+<article class="card-base flex h-full flex-col gap-4 p-6">
+    <div class="flex items-start justify-between gap-4">
+        <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
+                {project.category}
+            </div>
+            <h2 class="mt-1 text-2xl font-bold text-90">{project.name}</h2>
+        </div>
+        <a
+            href={project.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`在 GitHub 查看 ${project.name}`}
+            class="btn-regular h-10 w-10 shrink-0 rounded-lg active:scale-95"
+        >
+            <Icon name="fa6-brands:github" class="text-[1.25rem]"></Icon>
+        </a>
+    </div>
+
+    <p class="text-sm leading-relaxed text-75">{project.summary}</p>
+
+    <div class="flex flex-wrap gap-1.5" aria-label={`${project.name} 技术栈`}>
+        {visibleStack.map((item) => (
+            <span class="rounded-md bg-[var(--btn-regular-bg)] px-2 py-1 text-xs font-medium text-[var(--btn-content)]">
+                {item}
+            </span>
+        ))}
+        {hiddenStackCount > 0 && (
+            <span class="rounded-md bg-[var(--btn-regular-bg)] px-2 py-1 text-xs font-medium text-[var(--btn-content)]">
+                +{hiddenStackCount}
+            </span>
+        )}
+    </div>
+
+    {!compact && (
+        <div>
+            <div class="mb-2 text-sm font-bold text-90">核心功能</div>
+            <ul class="flex flex-col gap-1.5">
+                {project.features.map((item) => (
+                    <li class="flex items-start gap-2 text-sm text-75">
+                        <Icon name="material-symbols:check-circle-outline-rounded" class="mt-0.5 shrink-0 text-[1rem] text-[var(--primary)]"></Icon>
+                        <span>{item}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )}
+
+    {!compact && (
+        <div>
+            <div class="mb-2 text-sm font-bold text-90">设计取舍与已知限制</div>
+            <ul class="flex flex-col gap-1.5">
+                {project.challenges.map((item) => (
+                    <li class="flex items-start gap-2 text-sm text-75">
+                        <Icon name="material-symbols:info-outline-rounded" class="mt-0.5 shrink-0 text-[1rem] text-[var(--primary)]"></Icon>
+                        <span>{item}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )}
+
+    <div class="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-[var(--line-divider)] pt-4">
+        <a
+            href={project.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-regular h-9 rounded-lg px-3 text-sm font-bold active:scale-95"
+        >
+            查看仓库
+            <Icon name="fa6-solid:arrow-up-right-from-square" class="ml-2 text-[0.75rem]"></Icon>
+        </a>
+        <span class="text-xs text-30">更新于 {project.updated}</span>
+    </div>
+</article>

@@ -1,5 +1,6 @@
 ---
 import path from "node:path";
+import Comments from "@components/Comments.svelte";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
@@ -27,25 +28,37 @@ const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
 
+const siteUrl = Astro.site ? Astro.site.href : Astro.url.origin;
+const ogImageUrl = siteConfig.ogImage
+	? new URL(siteConfig.ogImage, siteUrl).href
+	: undefined;
+
 const jsonLd = {
 	"@context": "https://schema.org",
 	"@type": "BlogPosting",
 	headline: entry.data.title,
 	description: entry.data.description || entry.data.title,
 	keywords: entry.data.tags,
+	image: ogImageUrl,
 	author: {
 		"@type": "Person",
 		name: profileConfig.name,
-		url: Astro.site,
+		url: "https://github.com/YunfeiSHU",
 	},
 	datePublished: formatDateToYYYYMMDD(entry.data.published),
+	dateModified: formatDateToYYYYMMDD(
+		entry.data.updated || entry.data.published,
+	),
+	mainEntityOfPage: {
+		"@type": "WebPage",
+		"@id": new URL(Astro.url.pathname, siteUrl).href,
+	},
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
-	// TODO include cover image here
 };
 ---
-<MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} headings={headings}>
+<MainGridLayout banner={entry.data.image} title={entry.data.title} description={entry.data.description} lang={entry.data.lang} setOGTypeArticle={true} published={entry.data.published} updated={entry.data.updated} headings={headings}>
     <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
         <div id="post-container" class:list={["card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full ",
@@ -104,9 +117,12 @@ const jsonLd = {
 
             <Markdown class="mb-6 markdown-content onload-animation">
                 <Content />
+                <span class="sr-only" aria-hidden="true">标签：{entry.data.tags.join(" ")} 分类：{entry.data.category || "未分类"} 摘要：{entry.data.description}</span>
             </Markdown>
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
+
+            <Comments client:only="svelte" title={entry.data.title}></Comments>
 
         </div>
     </div>

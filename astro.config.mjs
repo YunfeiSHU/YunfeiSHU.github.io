@@ -25,9 +25,12 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
 
 // https://astro.build/config
+const siteUrl = process.env.SITE_URL ?? "https://YunfeiSHU.github.io/";
+const basePath = process.env.BASE_PATH ?? "/";
+
 export default defineConfig({
-	site: "https://fuwari.vercel.app/",
-	base: "/",
+	site: siteUrl,
+	base: basePath,
 	trailingSlash: "always",
 	integrations: [
 		tailwind({
@@ -100,7 +103,9 @@ export default defineConfig({
 			}
 		}),
         svelte(),
-		sitemap(),
+		sitemap({
+			filter: (page) => !page.endsWith("/404/"),
+		}),
 	],
 	markdown: {
 		remarkPlugins: [
