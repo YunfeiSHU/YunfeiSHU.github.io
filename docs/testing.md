@@ -81,7 +81,7 @@ pnpm preview
 ## 未完成/未验证
 
 - **Giscus 真实评论**：没有 repo/category/ID 和真实仓库 Discussions，未进行线上评论验证；组件默认关闭，仅完成代码与配置说明。
-- **真实部署**：GitHub Actions 工作流已准备；实际推送/部署状态以 GitHub Actions 运行结果为准。
+- **真实部署**：已于 2026-10-20 通过 GitHub Actions run `39401637522` 部署；线上首页、Projects、About、Archive、RSS、sitemap、Pagefind JS、OG 图片均返回 200，未知路径返回自定义 404。旧 `doc` 与 `hugo-main-backup` 分支保留。
 - **真实文章内容**：仍保留 5 篇 Fuwari 示例文章，未作为个人文章发布。
 - **完整 About 经历**：用户未提供，保持最小真实资料。
 - **Safari/Firefox**：未测试；已用 Chromium 内核检查。

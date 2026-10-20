@@ -1,6 +1,6 @@
 # 基于 Fuwari 的个人技术博客与作品集 — 实施计划
 
-> 阶段：阶段 0–5 的代码与本地验收已完成；GitHub Pages 部署已准备，实际线上状态以 Actions 运行结果为准。  
+> 阶段：阶段 0–5 已完成；站点已通过 GitHub Actions + GitHub Pages 部署并完成线上检查。  
 > 状态：计划已根据 2026-10-20 的 GitHub 资料和用户确认更新；本文件不把未完成的功能写成已完成。
 > 基线源码：`https://github.com/saicaca/fuwari.git`，`main` 分支，commit `6d39b0dec41282e7852e23e032998a5789abee28`（2025-12-12，`chore(deps): bump the patch-updates group ... (#681)`）。  
 > 本地环境：Windows，Node.js `v24.16.0`，pnpm `9.14.4`（`packageManager` 固定版本），Git `2.46.0.windows.1`。  
@@ -908,7 +908,7 @@ pnpm dev --host 127.0.0.1 --port 4323
    - 归档页阶段 3 是否保持 `client:only`（最小改动）还是直接做 SSR；
    - Pagefind 搜索是否固定按站点主语言（中文）选择索引。
 2. **项目范围已确认**：只展示最近更新的 `media-community-backend`、`ai-assistant`；`golang_interview`、`Resume`、旧博客不进入 Projects。
-3. **部署方式已确认**：用 Fuwari 替换旧 Hugo 站；实际推送/部署仍在阶段 5，且需要仓库写权限；未部署前不声称已上线。
+3. **部署方式已确认并执行**：用 Fuwari 替换旧 Hugo 站；已于 2026-10-20 通过 GitHub Actions + Pages 部署，旧 `doc` 与 `hugo-main-backup` 分支保留。
 4. **阶段 1、2 已完成**（个人化配置 + 基线修复 + Projects/首页展示）；下一步是阶段 3（标签/分类/搜索增强）。阶段 3 开始前再次执行 `git status --short`，不要覆盖本轮和用户的改动。
 5. 阶段 2 已只使用真实仓库数据（见 9.3）；`Resume`/旧博客未展示，避免把 fork/legacy 说成原创项目。
 
@@ -1035,7 +1035,7 @@ pnpm dev --host 127.0.0.1 --port 4323
 - Giscus（阶段 4）。
 - 标签/分类/搜索 UI 增强（阶段 3）。
 - 404、canonical/OG image、RSS/sitemap 的最终校验（阶段 5）。
-- 用 Fuwari 替换旧 Hugo 的**实际推送/部署**（阶段 5）；当前只确认了策略并配置了 `site`，没有修改远程仓库。
+- 用 Fuwari 替换旧 Hugo 的**实际推送/部署**：已在阶段 5 完成（见 18.3），旧 `doc` 与 `hugo-main-backup` 分支保留。
 - 完整 About 经历内容（用户未提供，保持最小真实资料）。
 - 模板 demo 文章仍保留，未删除或改写。
 
@@ -1072,4 +1072,4 @@ pnpm dev --host 127.0.0.1 --port 4323
 - 新增 `scripts/verify-build.mjs` 与 `pnpm verify`。
 - 新增 `README.md`、`docs/architecture.md`、`configuration.md`、`testing.md`、`deployment.md`。
 - 最终实测：`pnpm check` 0、`pnpm type-check` 0、`biome ci` 0、`pnpm build` 成功（10 HTML、Pagefind 6 页/720 词/zh-cn）、`pnpm verify` 42/42、404 正常、canonical/OG 正常、主题切换正常、四档视口无横向溢出。
-- **部署状态**：工作流已准备；旧 Hugo 的 `doc` 分支与 `main` 源将保留，实际推送/部署以 GitHub Actions 结果为准，尚未在本文件中标记为已上线。
+- **部署状态**：已于 2026-10-20 通过 GitHub Actions run `39401637522` 部署成功；`https://YunfeiSHU.github.io/`、Projects、About、Archive、RSS、sitemap、Pagefind JS、OG 图片均返回 200；未知路径返回自定义 404。旧 `doc` 与 `hugo-main-backup` 分支保留。

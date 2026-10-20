@@ -7,23 +7,29 @@
 - 用户站点根路径，`base: "/"`，不需要子路径配置
 - 用 Fuwari 替换旧 Hugo 站，旧内容不删除
 
-## 当前仓库状态（部署前）
+## 实际部署记录（2026-10-20）
 
-截至 2026-10-20：
+已实际执行：
+
+- 旧 `main` 备份为 `hugo-main-backup`；
+- 旧 `doc` 分支保留（旧 Hugo 构建产物 / 回滚点）；
+- Fuwari 源码推送到 `main`，commit `b927fe9e97715632bf9a77eb26c071c78a8b1d5b`；
+- Pages `build_type` 从 `legacy` 改为 `workflow`；
+- Actions `Deploy to GitHub Pages` run `39401637522`：build 46s、deploy 11s，成功；
+- 线上 `https://YunfeiSHU.github.io/`、`/projects/`、`/about/`、`/archive/`、`/404.html`、`/rss.xml`、`/sitemap-index.xml`、`/pagefind/pagefind.js`、`/og-default.png` 均返回 200；
+- 未知路径返回 404，内容为自定义“页面不存在”。
+
+当前仓库分支：
+
+- `main`：Fuwari 新站源码；
+- `doc`：旧 Hugo 构建产物；
+- `hugo-main-backup`：旧 Hugo 源内容。
+
+## 部署前状态（历史）
 
 - 默认分支 `main`：旧 Hugo 源内容；
-- 分支 `doc`：旧 Hugo 构建产物，GitHub Pages 当前从 `doc` 分支发布；
+- 分支 `doc`：旧 Hugo 构建产物，Pages 当时从 `doc` 分支发布；
 - Pages `build_type` 为 `legacy`。
-
-执行部署时：
-
-1. 先把旧 `main` 备份为 `hugo-main-backup`（保留历史）；
-2. 把 Fuwari 源码推送到 `main`；
-3. 把 Pages 的 `build_type` 改成 `workflow`；
-4. 由 `.github/workflows/deploy.yml` 构建并发布 `dist/`；
-5. `doc` 分支保留，作为旧站回滚点。
-
-不要删除 `doc` 或 `hugo-main-backup`，直到新站验收完成。
 
 ## 工作流
 
@@ -36,9 +42,9 @@
 
 `build.yml` 仍用于 push/PR 的检查与构建；`biome.yml` 使用项目固定 Biome 版本。
 
-## 手动部署步骤
+## 复现/后续部署步骤
 
-在具备仓库写权限的环境执行：
+以下命令已用于本次部署，后续更新可在具备仓库写权限的环境重复执行：
 
 ```bash
 # 1. 先备份旧 main

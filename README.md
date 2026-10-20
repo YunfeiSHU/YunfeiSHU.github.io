@@ -2,7 +2,7 @@
 
 基于 [Fuwari](https://github.com/saicaca/fuwari) 的个人技术博客与开发者作品集。
 
-- 线上地址（部署完成后）：<https://YunfeiSHU.github.io/>
+- 线上地址：<https://YunfeiSHU.github.io/>（已部署）
 - GitHub：<https://github.com/YunfeiSHU>
 - 技术栈：Astro 5、TypeScript、Tailwind CSS 3、Svelte 5、Pagefind、Expressive Code
 - 保留 Fuwari 的 MIT 许可证与 Footer 署名
