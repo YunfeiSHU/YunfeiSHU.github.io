@@ -104,7 +104,7 @@ giscusConfig = {
 
 ## 内容占位与真实性
 
-- 目前没有真实文章，`src/content/posts/` 保留了 5 篇 Fuwari 示例文章，尚未删除或改写成个人文章。
+- 当前 `src/content/posts/` 只保留一篇真实教程《如何用本项目写文章并发布到网站》；Fuwari 示例文章已移除。
 - About 只包含 GitHub 资料和最小真实介绍，没有虚构经历。
 - Projects 只展示两个真实仓库；`golang_interview`、`Resume`（fork）、旧 Hugo 博客不展示。
 - Giscus 未配置真实 ID，评论区默认隐藏。
