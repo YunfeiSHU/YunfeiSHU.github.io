@@ -1,19 +1,17 @@
 ---
 import type { MarkdownHeading } from "astro";
 import { siteConfig } from "../../config";
+import type { TocEntry } from "../../types/toc";
 import { url } from "../../utils/url-utils";
 
 interface Props {
 	class?: string;
 	headings: MarkdownHeading[];
+	/** 构建期生成的目录条目，html 里的公式已渲染成 KaTeX，缺失时回退到 headings 的纯文本 */
+	tocEntries?: TocEntry[];
 }
 
-let { headings = [] } = Astro.props;
-
-let minDepth = 10;
-for (const heading of headings) {
-	minDepth = Math.min(minDepth, heading.depth);
-}
+let { headings = [], tocEntries = [] } = Astro.props;
 
 const className = Astro.props.class;
 const isPostsRoute = Astro.url.pathname.startsWith(url("/posts/"));
@@ -27,37 +25,70 @@ const removeTailingHash = (text: string) => {
 	return text.substring(0, lastIndexOfHash);
 };
 
+const escapeHtml = (text: string) =>
+	text
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;");
+
+// 有构建期条目时用渲染好的 HTML（公式是 KaTeX），否则退回纯文本标题
+const items: TocEntry[] =
+	tocEntries.length > 0
+		? tocEntries
+		: headings.map((heading) => ({
+				depth: heading.depth,
+				slug: heading.slug,
+				html: escapeHtml(removeTailingHash(heading.text)),
+			}));
+
+let minDepth = 10;
+for (const item of items) {
+	minDepth = Math.min(minDepth, item.depth);
+}
+
 let heading1Count = 1;
 
 const maxLevel = siteConfig.toc.depth;
 ---
 {isPostsRoute &&
 <table-of-contents class:list={[className, "group"]}>
-    {headings.filter((heading) => heading.depth < minDepth + maxLevel).map((heading) =>
-            <a href={`#${heading.slug}`} class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
+    {items.filter((item) => item.depth < minDepth + maxLevel).map((item) =>
+            <a href={`#${item.slug}`} class="px-2 flex gap-2 relative transition w-full min-h-9 rounded-xl
         hover:bg-[var(--toc-btn-hover)] active:bg-[var(--toc-btn-active)] py-2
     ">
                 <div class:list={["transition w-5 h-5 shrink-0 rounded-lg text-xs flex items-center justify-center font-bold",
                     {
-                        "bg-[var(--toc-badge-bg)] text-[var(--btn-content)]": heading.depth == minDepth,
-                        "ml-4": heading.depth == minDepth + 1,
-                        "ml-8": heading.depth == minDepth + 2,
+                        "bg-[var(--toc-badge-bg)] text-[var(--btn-content)]": item.depth == minDepth,
+                        "ml-4": item.depth == minDepth + 1,
+                        "ml-8": item.depth == minDepth + 2,
                     }
                 ]}
                 >
-                    {heading.depth == minDepth && heading1Count++}
-                    {heading.depth == minDepth + 1 && <div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]"></div>}
-                    {heading.depth == minDepth + 2 && <div class="transition w-1.5 h-1.5 rounded-sm bg-black/5 dark:bg-white/10"></div>}
+                    {item.depth == minDepth && heading1Count++}
+                    {item.depth == minDepth + 1 && <div class="transition w-2 h-2 rounded-[0.1875rem] bg-[var(--toc-badge-bg)]"></div>}
+                    {item.depth == minDepth + 2 && <div class="transition w-1.5 h-1.5 rounded-sm bg-black/5 dark:bg-white/10"></div>}
                 </div>
-                <div class:list={["transition text-sm", {
-                    "text-50": heading.depth == minDepth || heading.depth == minDepth + 1,
-                    "text-30": heading.depth == minDepth + 2,
-                }]}>{removeTailingHash(heading.text)}</div>
+                <div class:list={["transition text-sm toc-label", {
+                    "text-50": item.depth == minDepth || item.depth == minDepth + 1,
+                    "text-30": item.depth == minDepth + 2,
+                }]} set:html={item.html}></div>
             </a>
     )}
-    <div id="active-indicator" style="opacity: 0" class:list={[{'hidden': headings.length == 0}, "-z-10 absolute bg-[var(--toc-btn-hover)] left-0 right-0 rounded-xl transition-all " +
+    <div id="active-indicator" style="opacity: 0" class:list={[{'hidden': items.length == 0}, "-z-10 absolute bg-[var(--toc-btn-hover)] left-0 right-0 rounded-xl transition-all " +
         "group-hover:bg-transparent border-2 border-[var(--toc-btn-hover)] group-hover:border-[var(--toc-btn-active)] border-dashed"]}></div>
 </table-of-contents>}
+
+<style is:global>
+    /* 目录里的 KaTeX 跟正文文字同号，避免在窄侧栏里显得过大 */
+    #toc .toc-label .katex {
+        font-size: 1em;
+    }
+    #toc .toc-label .katex-display {
+        display: inline-block;
+        margin: 0;
+    }
+</style>
 
 <script>
 class TableOfContents extends HTMLElement {

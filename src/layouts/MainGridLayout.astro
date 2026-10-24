@@ -13,6 +13,7 @@ import {
 	BANNER_HEIGHT_EXTEND,
 	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
 } from "../constants/constants";
+import type { TocEntry } from "../types/toc";
 import Layout from "./Layout.astro";
 
 interface Props {
@@ -24,6 +25,7 @@ interface Props {
 	published?: Date;
 	updated?: Date;
 	headings?: MarkdownHeading[];
+	tocEntries?: TocEntry[];
 }
 
 const {
@@ -35,6 +37,7 @@ const {
 	published,
 	updated,
 	headings = [],
+	tocEntries = [],
 } = Astro.props;
 const hasBannerCredit =
 	siteConfig.banner.enable && siteConfig.banner.credit.enable;
@@ -116,7 +119,7 @@ const mainPanelTop = siteConfig.banner.enable
             <div id="toc-inner-wrapper" class="fixed top-14 w-[var(--toc-width)] h-[calc(100vh_-_20rem)] overflow-y-scroll overflow-x-hidden hide-scrollbar">
                 <div id="toc" class="w-full h-full transition-swup-fade ">
                     <div class="h-8 w-full"></div>
-                    <TOC headings={headings}></TOC>
+                    <TOC headings={headings} tocEntries={tocEntries}></TOC>
                     <div class="h-8 w-full"></div>
                 </div>
             </div>
