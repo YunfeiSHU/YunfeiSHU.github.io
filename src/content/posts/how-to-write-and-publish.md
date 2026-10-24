@@ -3,7 +3,7 @@ title: "如何用本项目写文章并发布到网站"
 published: 2026-10-20
 updated: 2026-10-20
 description: "从新建 Markdown、填写 frontmatter、本地预览，到 git push 触发 GitHub Actions 部署的完整流程。"
-tags: ["Fuwari", "Markdown", "GitHub Pages", "写作"]
+tags: ["写作"]
 category: "站点维护"
 draft: false
 lang: zh_CN
