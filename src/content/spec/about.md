@@ -4,15 +4,6 @@
 
 这个博客用来记录技术学习、项目实践和一些生活思考。
 
-## 我在做什么
-
-日常主要关注这几块：
-
-- **后端与微服务**：Java / Spring Boot / Spring Cloud、Go / Gin，代码架构、网关鉴权、消息队列与缓存。
-- **数据与基础设施**：MySQL、Redis、RabbitMQ / Kafka、MinIO、Docker Compose，以够用、能部署、能排错为准。
-- **AI 应用**：LLM 编排、RAG 检索、Agent 工具调用、Memory 与流式输出，关注怎么把 demo 做成可维护的系统。
-- **基本功**：计算机网络、操作系统、算法与数据库，仍在持续学习。
-
 ## 关于这个站
 
 站点基于 Astro + Fuwari，文章用 Markdown 维护，部署在 GitHub Pages。除了技术笔记，也会放一些阶段性总结和随笔，算是一个长期维护的个人存档。
