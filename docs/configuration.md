@@ -28,7 +28,7 @@ profileConfig = {
 homeConfig = {
   intro: "记录技术学习、项目实践与日常思考。",
   techStack: ["Go", "Java", "MySQL", "Redis", "计算机网络", "AI 应用"],
-  featuredProjectSlugs: ["media-community-backend", "ai-assistant"],
+  featuredProjectSlugs: ["media-community", "ai-assistant"],
 }
 ```
 
@@ -41,10 +41,10 @@ homeConfig = {
 
 `src/data/projects.ts` 只维护真实项目：
 
-- `media-community-backend`
+- `media-community`
 - `ai-assistant`
 
-每项包含 `slug/name/summary/stack/features/challenges/repoUrl/category/featured/updated`。`ProjectCard` 的“设计取舍与已知限制”只引用 README 中明确写出的内容。
+每项包含 `slug/name/summary/stack/modules/highlights/repoUrl/category/featured/updated`。`ProjectCard` 的“核心模块”与“架构要点”只引用 README 中明确写出的内容。
 
 新增项目时：
 

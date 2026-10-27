@@ -85,7 +85,7 @@ export const licenseConfig: LicenseConfig = {
 export const homeConfig = {
 	intro: "记录技术学习、项目实践与日常思考。",
 	techStack: ["Go", "Java", "MySQL", "Redis", "计算机网络", "AI 应用"],
-	featuredProjectSlugs: ["media-community-backend", "ai-assistant"],
+	featuredProjectSlugs: ["media-community", "ai-assistant"],
 };
 
 /**

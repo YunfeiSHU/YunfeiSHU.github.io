@@ -48,12 +48,20 @@ const hiddenStackCount = project.stack.length - visibleStack.length;
 
     {!compact && (
         <div>
-            <div class="mb-2 text-sm font-bold text-90">核心功能</div>
-            <ul class="flex flex-col gap-1.5">
-                {project.features.map((item) => (
-                    <li class="flex items-start gap-2 text-sm text-75">
-                        <Icon name="material-symbols:check-circle-outline-rounded" class="mt-0.5 shrink-0 text-[1rem] text-[var(--primary)]"></Icon>
-                        <span>{item}</span>
+            <div class="mb-2 flex items-baseline justify-between gap-2">
+                <div class="text-sm font-bold text-90">核心模块</div>
+                <span class="text-xs text-30">{project.modules.length} 个模块</span>
+            </div>
+            <ul class="flex flex-col gap-2">
+                {project.modules.map((module, index) => (
+                    <li class="flex items-start gap-2 text-sm">
+                        <span class="mt-0.5 w-5 shrink-0 text-xs font-bold text-[var(--primary)]">
+                            {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span class="leading-relaxed">
+                            <span class="font-bold text-90">{module.name}</span>
+                            <span class="text-75">：{module.detail}</span>
+                        </span>
                     </li>
                 ))}
             </ul>
@@ -62,9 +70,9 @@ const hiddenStackCount = project.stack.length - visibleStack.length;
 
     {!compact && (
         <div>
-            <div class="mb-2 text-sm font-bold text-90">设计取舍与已知限制</div>
+            <div class="mb-2 text-sm font-bold text-90">架构要点</div>
             <ul class="flex flex-col gap-1.5">
-                {project.challenges.map((item) => (
+                {project.highlights.map((item) => (
                     <li class="flex items-start gap-2 text-sm text-75">
                         <Icon name="material-symbols:info-outline-rounded" class="mt-0.5 shrink-0 text-[1rem] text-[var(--primary)]"></Icon>
                         <span>{item}</span>

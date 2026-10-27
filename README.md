@@ -62,8 +62,8 @@ lang: zh_CN
 
 项目数据在 `src/data/projects.ts`，只维护真实存在的仓库：
 
-- `media-community-backend`：音视频社区后端
-- `ai-assistant`：个人智能 Agent 平台
+- `media-community`：音视频社区（React + Java + Go 全栈）
+- `ai-assistant`：个人智能 Agent 平台（React + Go + Python 全栈）
 
 `/projects/` 页面与首页“精选项目”都读取该文件；没有真实数据时不要添加占位项目。
 
